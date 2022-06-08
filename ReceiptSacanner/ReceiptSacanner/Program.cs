@@ -53,7 +53,26 @@ namespace ReceiptSacanner
             Console.WriteLine("---------------------------");
 
 
+            Console.WriteLine("Imported: ");
+            foreach (var item in todo)
+            {
+                if (item.Domestic != true)
+                {
+                    if (item.Description.Length > 10)
+                    {
+                        item.Description = item.Description.Substring(0, 10);
+                    }
+                    if (item.Weight == null)
+                    {
+                        Console.WriteLine(item.Name + "\nPrice: $ " + item.Price + "\n" + item.Description + "\nWeight: N/A");
+                    }
+                    else if (item.Weight != null)
+                    {
+                        Console.WriteLine(item.Name + "\nPrice: $ " + item.Price + "\n" + item.Description + "\nWeight: " + item.Weight);
+                    }
+                }
 
+            }
 
 
             Console.WriteLine("---------------------------");
