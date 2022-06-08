@@ -21,6 +21,14 @@ namespace ReceiptSacanner
                "https://interview-task-api.mca.dev/qr-scanner-codes/alpha-qr-gFpwhsQ8fkY1");
 
             List<Todo> todo = JsonConvert.DeserializeObject<List<Todo>>(response);
+
+            todo.Sort((x, y) => string.Compare(x.Name, y.Name));
+
+            int count = todo.Count(x => x.Domestic);
+            int countImported = todo.Count(x => x.Domestic == false);
+
+            double sumDomestic = todo.Where(c => c.Domestic).Sum(c => c.Price);
+            double sumImported = todo.Where(x => x.Domestic == false).Sum(x => x.Price);
         }
 
         public class Todo
