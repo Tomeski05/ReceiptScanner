@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -29,6 +30,39 @@ namespace ReceiptSacanner
 
             double sumDomestic = todo.Where(c => c.Domestic).Sum(c => c.Price);
             double sumImported = todo.Where(x => x.Domestic == false).Sum(x => x.Price);
+
+            Console.WriteLine("Domestic: ");
+            foreach (var item in todo)
+            {
+                if (item.Domestic == true)
+                {
+                    if (item.Description.Length > 10)
+                    {
+                        item.Description = item.Description.Substring(0, 10);
+                    }
+                    if (item.Weight == null)
+                    {
+                        Console.WriteLine(item.Name + "\nPrice: $ " + item.Price + "\n" + item.Description + "\nWeight: N/A");
+                    }
+                    else if (item.Weight != null)
+                    {
+                        Console.WriteLine(item.Name + "\nPrice: $ " + item.Price + "\n" + item.Description + "\nWeight: " + item.Weight);
+                    }
+                }
+            }
+            Console.WriteLine("---------------------------");
+
+
+
+
+
+            Console.WriteLine("---------------------------");
+            Console.WriteLine("Domestic count: " + count);
+            Console.WriteLine("Imported count: " + countImported);
+            Console.WriteLine("---------------------------");
+            Console.WriteLine("Imported cost: {0:C}", sumDomestic);
+            Console.WriteLine("Imported cost: {0:C}", sumImported);
+
         }
 
         public class Todo
