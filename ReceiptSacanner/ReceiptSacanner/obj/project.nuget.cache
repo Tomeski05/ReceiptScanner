@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KAPKZT1N9ShF35TfLUsV7MyELqw3SqwcQUSoQ1pVw05q5feCClyMian06ZTOnk9+g3KQ8Wva2XY/mBwDMee68Q==",
+  "dgSpecHash": "PA5UND1vGm9mkqyuxnAkoRGZ/eulUnEBbQxRktYoCQtlBagRMWcQ7KXWj2RMCKBtbO/NN/pInml6KIZJ1J9jhA==",
   "success": true,
   "projectFilePath": "D:\\Programming Online Classes\\Programming Course G3\\ReceiptScanner\\ReceiptSacanner\\ReceiptSacanner\\ReceiptSacanner.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Filip\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
