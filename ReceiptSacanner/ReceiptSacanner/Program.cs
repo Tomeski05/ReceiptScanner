@@ -16,23 +16,24 @@ namespace ReceiptSacanner
             Program program = new Program();
             await program.GetTodoItems();
         }
+
         private async Task GetTodoItems()
         {
             string response = await client.GetStringAsync(
                "https://interview-task-api.mca.dev/qr-scanner-codes/alpha-qr-gFpwhsQ8fkY1");
 
-            List<Todo> todo = JsonConvert.DeserializeObject<List<Todo>>(response);
+            List<Product> receipt = JsonConvert.DeserializeObject<List<Product>>(response);
 
-            todo.Sort((x, y) => string.Compare(x.Name, y.Name));
+            receipt.Sort((x, y) => string.Compare(x.Name, y.Name));
 
-            int count = todo.Count(x => x.Domestic);
-            int countImported = todo.Count(x => x.Domestic == false);
+            int count = receipt.Count(x => x.Domestic);
+            int countImported = receipt.Count(x => x.Domestic == false);
 
-            double sumDomestic = todo.Where(c => c.Domestic).Sum(c => c.Price);
-            double sumImported = todo.Where(x => x.Domestic == false).Sum(x => x.Price);
+            double sumDomestic = receipt.Where(c => c.Domestic).Sum(c => c.Price);
+            double sumImported = receipt.Where(x => x.Domestic == false).Sum(x => x.Price);
 
             Console.WriteLine("Domestic: ");
-            foreach (var item in todo)
+            foreach (var item in receipt)
             {
                 if (item.Domestic == true)
                 {
@@ -54,7 +55,7 @@ namespace ReceiptSacanner
 
 
             Console.WriteLine("Imported: ");
-            foreach (var item in todo)
+            foreach (var item in receipt)
             {
                 if (item.Domestic != true)
                 {
@@ -71,9 +72,7 @@ namespace ReceiptSacanner
                         Console.WriteLine(item.Name + "\nPrice: $ " + item.Price + "\n" + item.Description + "\nWeight: " + item.Weight);
                     }
                 }
-
             }
-
 
             Console.WriteLine("---------------------------");
             Console.WriteLine("Domestic count: " + count);
@@ -84,7 +83,7 @@ namespace ReceiptSacanner
 
         }
 
-        public class Todo
+        public class Product
         {
             public string Name { get; set; }
             public bool Domestic { get; set; }
@@ -92,6 +91,5 @@ namespace ReceiptSacanner
             public int? Weight { get; set; }
             public string Description { get; set; }
         }
-
     }
 }
